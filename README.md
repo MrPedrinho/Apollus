@@ -18,3 +18,9 @@ Apollus, the music bot that will offend you, insult you, be annoyed at you, and 
 The bot supports Spotify and Youtube, playlists included.
 
 Use mofo help to get started
+
+
+
+![Apollus' logo](https://user-images.githubusercontent.com/67689613/147884007-903f76e8-c53c-4ec7-9e3a-87e93b87f3ed.png)
+
+Logo by @goncaaloo
