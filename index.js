@@ -27,6 +27,8 @@ commandFiles.forEach(file => {
 client.on("messageCreate", async (message) => {
     if (message.author.bot) return;
 
+    if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES")) return;
+
     const guild = getGuild(message.guild.id)
 
     if (message.content.toLowerCase().trim() === "mofo help") {
@@ -148,7 +150,7 @@ client.on("guildDelete", async (guild) => {
 
 client.on("ready", () => console.log("ready bitch"))
 
-client.login(process.env.TOKEN).then(_r => {
+client.login(process.env.TOKEN).then(async _r => {
     let servers = client.guilds.cache
     let options = [{name: "music to " + servers.size + " servers", type: "PLAYING"}, {name: "you enjoy music", type: "WATCHING"}, {name: "to be the best music bot", type: "COMPETING"}]
     let current = 0
@@ -160,13 +162,10 @@ client.login(process.env.TOKEN).then(_r => {
         if (current >= options.length) current = 0
     }, 20*1000)
 
-
-    servers.forEach(async sv => {
-        let info = await Server
-            .findOne({guild_id: sv.id})
-            .exec()
-
-        if (info) createGuild(sv.id, info.language)
-    })
-
+    let guildsInfo = await Server.find({}).exec()
+    for (const guildInfo of guildsInfo) {
+        const guild = client.guilds.cache.get(guildInfo.guild_id)
+        if (!guild) continue;
+        createGuild(guild.id, guildInfo.language)
+    }
 })

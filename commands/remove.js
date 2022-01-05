@@ -17,7 +17,7 @@ module.exports = {
 
         const guild = getGuild(message.guild.id)
         const lang = guild.language
-
+        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
         const removedSong = guild.removeSong(props.join(" "))
         if (!removedSong) {
             return message.reply(lang === "pt" ? "Não encontrei nada" : "I found nothing")

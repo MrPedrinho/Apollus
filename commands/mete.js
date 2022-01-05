@@ -23,6 +23,10 @@ module.exports = {
 
         if (!vc) return message.reply(lang === "pt" ? "Tens de estar num voice chat, cabrão" : "You need to be in a voice chat, fuckwit");
 
+        if (message.guild.me.voice.channel) {
+            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        }
+
         if (!props.length) return message.reply(lang === "pt" ? "Tens de dizer uma música, corno" : "You need to say a song, bitch");
 
         await guild.setConnection(message, vc)
