@@ -2,6 +2,18 @@ const { Client } = require("discord.js")
 const fs = require("fs")
 const {createGuild, getGuild, deleteGuild, selectLanguage, connectMongo, Server} = require("./assets");
 require("dotenv").config()
+const play = require("play-dl")
+play.setToken({
+    youtube : {
+        cookie : process.env.YT_COOKIE
+    },
+    spotify: {
+        client_id: process.env.SPOTIFY_CLIENT_ID,
+        client_secret: process.env.SPOTIFY_CLIENT_SECRET,
+        refresh_token: process.env.SPOTIFY_REFRESH_TOKEN,
+        market: process.env.SPOTIFY_MARKET
+    }
+})
 
 //https://discord.com/oauth2/authorize?client_id=894845421380337684&scope=bot&permissions=36809984
 
