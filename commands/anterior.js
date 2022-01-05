@@ -17,6 +17,8 @@ module.exports = {
         const lang = guild.language
 
         try {
+            if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+
             const success = guild.playPrevious()
             if (!success) return message.reply(lang === "pt" ? "Tentei, mas não deu" : "I tried, but I failed")
             message.reply(lang === "pt" ? "Feito" : "Done")

@@ -15,19 +15,15 @@ module.exports = {
 
     async execute (message, _props) {
         const guild = getGuild(message.guild.id)
+        const lang = guild.language
 
         const vc = message.member.voice.channel;
         if (!vc) return message.reply(guild.language === "pt" ? "Tens de estar num voice chat, cabrão" : "You need to be in a voice chat, fuckwit");
-
+        if (message.guild.me.voice.channel) {
+            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        }
         await guild.setConnection(message, vc)
 
-        try {
-            message.channel.send({
-                files: ["./rickroll-image.jpg"]
-            })
-        } catch {
-            message.channel.send(`Never gonna give you up <@!${message.author.id}>`)
-        }
 
         const {video_details} = await video_info("https://www.youtube.com/watch?v=dQw4w9WgXcQ",)
 
@@ -41,5 +37,13 @@ module.exports = {
         }
 
         await guild.playNow(song)
+
+        try {
+            message.channel.send({
+                files: ["./rickroll-image.jpg"]
+            })
+        } catch {
+            message.channel.send(`Never gonna give you up <@!${message.author.id}>`)
+        }
     }
 }
