@@ -82,16 +82,6 @@ client.on("messageCreate", async (message) => {
         return
     }
 
-    const trimmed = message.content.toLowerCase().trim()
-    if (trimmed === "fdp") {
-        try {
-            await message.reply("Filho da puta és tu")
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-
     const [prefix, cmd, ...props] = message.content.split(" ")
 
     if (prefix !== "fdp") return
