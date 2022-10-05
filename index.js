@@ -156,15 +156,7 @@ client.on("ready", async () => {
 
 client.login(process.env.TOKEN).then(async _r => {
     let servers = client.guilds.cache
-    let options = [{name: "music to " + servers.size + " servers", type: "PLAYING"}, {name: "you enjoy music", type: "WATCHING"}, {name: "the music bot race", type: "COMPETING"}]
-    let current = 0
-
-    setInterval(() => {
-        const {name, type} = options[current]
-        client.user.setActivity(name, {type})
-        current++
-        if (current >= options.length) current = 0
-    }, 20*1000)
+    client.user.setActivity("musica para " + servers.size + " servidores", {type: "PLAYING"})
 
     let guildsInfo = await Server.find({}).exec()
     for (const guildInfo of guildsInfo) {
