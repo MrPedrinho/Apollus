@@ -6,7 +6,7 @@ const ajudaCmds = {
     en: {
         cmd: "help",
         help: "Information about each command, as if you're stupid",
-        usage: "mofo ajuda",
+        usage: "fdp ajuda",
     },
     pt: {
         cmd: "ajuda",
@@ -22,7 +22,7 @@ const commandFiles = fs.readdirSync(__dirname).filter(file => file.endsWith(".js
 
 commandFiles.forEach(file => {
     const cmd = file === "ajuda.js" ? ajudaCmds : require(`${__dirname}/${file.toLowerCase()}`)
-    help_general.en.push(`\`mofo ${cmd.en.cmd}\` - ${cmd.en.help}`)
+    help_general.en.push(`\`fdp ${cmd.en.cmd}\` - ${cmd.en.help}`)
     help_general.pt.push(`\`fdp ${cmd.pt.cmd}\` - ${cmd.pt.help}`)
 
     helps.en[cmd.en.cmd] = `\`${cmd.en.usage}\` - ${cmd.en.help}`
@@ -32,12 +32,12 @@ commandFiles.forEach(file => {
 module.exports = {
     en: {
         cmd: "help",
-        help: "Information about each command, as if you're stupid",
-        usage: "mofo ajuda",
+        help: "Information about each command",
+        usage: "fdp ajuda",
     },
     pt: {
         cmd: "ajuda",
-        help: "Ajuda-te a perceber os comandos, como se fosses estúpido",
+        help: "Ajuda-te a perceber os comandos",
         usage: "fdp ajuda"
     },
 

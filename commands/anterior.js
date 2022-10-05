@@ -9,7 +9,7 @@ module.exports = {
     en: {
         cmd: "previous",
         help: "Play the previous music",
-        usage: "mofo previous"
+        usage: "fdp previous"
     },
 
     async execute (message, _props) {
@@ -17,7 +17,7 @@ module.exports = {
         const lang = guild.language
 
         try {
-            if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+            if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
 
             const success = guild.playPrevious()
             if (!success) return message.reply(lang === "pt" ? "Tentei, mas não deu" : "I tried, but I failed")

@@ -4,7 +4,7 @@ module.exports = {
     en: {
         cmd: "die",
         help: "The music is annoying you? Kill the bot!",
-        usage: "mofo die"
+        usage: "fdp die"
     },
     pt: {
         cmd: "morre",
@@ -16,7 +16,7 @@ module.exports = {
 
         const guild = getGuild(message.guild.id)
         const lang = guild.language
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         try {
             message.reply("Okok")
             await guild.kill()

@@ -5,7 +5,7 @@ module.exports = {
     en: {
         cmd: "skip",
         help: "Unlimited skips, for free.",
-        usage: "mofo skip"
+        usage: "fdp skip"
     },
     pt: {
         cmd: "salta",
@@ -15,8 +15,7 @@ module.exports = {
 
     async execute (message, _props) {
         const guild = getGuild(message.guild.id)
-        const lang = guild.language
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(guild.language === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(guild.language === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         try {
             await guild.skipSong(message)
         } catch (err) {

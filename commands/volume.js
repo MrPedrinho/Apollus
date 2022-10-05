@@ -4,7 +4,7 @@ module.exports = {
     en: {
         cmd: "volume",
         help: "Changes the volume of the bot",
-        usage: "mofo volume <value>"
+        usage: "fdp volume <value>"
     },
     pt: {
         cmd: "volume",
@@ -16,7 +16,7 @@ module.exports = {
         const guild = getGuild(message.guild.id)
         const lang = guild.language
         const {language} = guild
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         const volume = props[0]
         if (volume >= 0.1 && volume <= 2) {
             guild.setVolume(volume)

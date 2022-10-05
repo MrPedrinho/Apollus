@@ -5,7 +5,7 @@ module.exports = {
     en: {
         cmd: "play",
         help: "Adds a song to the queue. Supports Youtube search and playlists; and Spotify albums, tracks, and playlists.",
-        usage: "mofo play <search query or URL>"
+        usage: "fdp play <search query or URL>"
     },
     pt: {
         cmd: "mete",
@@ -21,13 +21,13 @@ module.exports = {
 
         const vc = message.member.voice.channel;
 
-        if (!vc) return message.reply(lang === "pt" ? "Tens de estar num voice chat, cabrão" : "You need to be in a voice chat, fuckwit");
+        if (!vc) return message.reply(lang === "pt" ? "Tens de estar num voice chat" : "You need to be in a voice chat");
 
         if (message.guild.me.voice.channel) {
-            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         }
 
-        if (!props.length) return message.reply(lang === "pt" ? "Tens de dizer uma música, corno" : "You need to say a song, bitch");
+        if (!props.length) return message.reply(lang === "pt" ? "Tens de dizer uma música..." : "You need to say a song...");
 
         await guild.setConnection(message, vc)
 

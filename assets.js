@@ -37,16 +37,10 @@ async function selectLanguage(guild) {
         "fields": [
             {
                 "name": "English",
-                "value": "Say `mofo english` for English",
-            }, {
-                "name": "Reminder",
-                "value": "This bot will curse at you, offend you, and be annoyed at you.",
+                "value": "Say `fdp english` for English",
             }, {
                 "name": "Português",
                 "value": "Diz `fdp português` para Português",
-            }, {
-                "name": "Para lembrar",
-                "value": "Este bot vai dizer asneiras, ofender-te, e irritar-se contigo",
             }
         ]
     })
@@ -55,11 +49,11 @@ async function selectLanguage(guild) {
         const reminderMessage = await defaultChannel.send(`<@!${guild.ownerId}>`)
         const sentMsg = await defaultChannel.send({embeds: [embed]})
 
-        defaultChannel.awaitMessages({filter: m => (m.content === "fdp português" || m.content === "mofo english") && m.member.permissions.has("ADMINISTRATOR"), max: 1})
+        defaultChannel.awaitMessages({filter: m => (m.content === "fdp português" || m.content === "fdp english") && m.member.permissions.has("ADMINISTRATOR"), max: 1})
             .then(async (collected) => {
                 if (Server.findOne({guild_id: guild.id})) return
                 const content = collected.map(d => d.content)[0]
-                const language = content === "mofo english" ? "en" : "pt"
+                const language = content === "fdp english" ? "en" : "pt"
 
                 const newMsg = guild.me.permissions.has("READ_MESSAGE_HISTORY") && await defaultChannel.send(language === "pt" ? "Aguarda..." : "Please wait...")
 

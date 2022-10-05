@@ -37,7 +37,7 @@ class Guild {
 
             if (this.previousMusic) {
                 try {
-                    this.previousMusic.channel.send(this.language === "pt" ? "Como vocês me abandonaram, eu saí. Fodam-se a todos" : "Since you guys abandoned me, I'm leaving. Fuck y'all")
+                    this.previousMusic.channel.send(this.language === "pt" ? "Já que a música parou vou-me embora" : "Since the music stop, I'm going. Bye")
                 } catch (e) {
                     console.log(e)
                 }
@@ -94,7 +94,7 @@ class Guild {
             await this.play(song)
 
         } catch (err) {
-            song.channel.send(this.language === "pt" ? "Algum fdp fez esta merda parar" : "Some mofo made this shit crash")
+            song.channel.send(this.language === "pt" ? "Oops, aconteceu alguma coisa" : "Oops, something wrong happened")
             this.connection && this.connection.destroy();
             this.connection = undefined
             await this.player.stop()
@@ -220,7 +220,7 @@ class Guild {
         const lang = this.language
 
         const embed = new MessageEmbed({
-            "title": lang === "pt" ? "A música vou saltar, ou porrada vou levar" : "The music I will skip, or help I will seek",
+            "title": lang === "pt" ? "Podes descançar que jã vai mudar" : "You can chill 'cause I'm skipping it",
             "color": 15158332,
             "timestamp": date,
             "description": `

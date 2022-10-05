@@ -11,7 +11,7 @@ module.exports = {
     en: {
         cmd: "playing",
         help: "Displays information about the music playing",
-        usage: "mofo playing",
+        usage: "fdp playing",
     },
 
     async execute (message, _props) {

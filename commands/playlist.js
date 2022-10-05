@@ -5,7 +5,7 @@ module.exports = {
     en: {
         cmd: "queue",
         help: "Displays the song queue",
-        usage: "mofo queue"
+        usage: "fdp queue"
     },
     pt: {
         cmd: "playlist",
@@ -27,13 +27,13 @@ module.exports = {
             durationAcc += song.durationSec
             if (idx > 0) return `${idx} - [${song.title}](${song.url}) - **${song.duration}** (${lang === "pt" ? `aproximadamente ${computedDuration} até tocar`: `approximately ${computedDuration} until it plays`})\n`
             return `
-                ⬐ ${lang === "pt" ? "Música atual, ganda fixe}" : "Current music, much wow"}
+                ⬐ ${lang === "pt" ? "Música atual}" : "Current music, cool"}
                 ${lang === "pt" ? "Agora" : "Now"} - [${song.title}](${song.url}) - **${song.duration}**
                 ⬑\n`
         })
 
         nQueue.push(nQueue.length === 0 ?
-            lang === "pt" ? "Vazio, como o teu crânio" : "Empty, like your brain"
+            lang === "pt" ? "Vazio" : "Empty"
             : spliced ?
                 lang === "pt" ? "Ainda há mais músicas, mas calma aí que ainda falta algum tempo": "There are more songs, but it'll take a while for them to play"
                 : lang === "pt" ? "Acaba aqui" : "It ends here"

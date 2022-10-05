@@ -5,12 +5,12 @@ module.exports = {
     en: {
         cmd: "bday",
         help: "Happy Birthday!",
-        usage: "mofo bday <@birthday boy/girl>"
+        usage: "fdp bday <@someone>"
     },
     pt: {
         cmd: "bday",
         help: "Feliz Aniversário!",
-        usage: "fdp bday <@aniversariante (opcional)>",
+        usage: "fdp bday <@alguém>",
     },
 
     async execute (message, _props) {
@@ -18,16 +18,16 @@ module.exports = {
         const lang = guild.language
 
         const vc = message.member.voice.channel;
-        if (!vc) return message.reply(lang === "pt" ? "Tens de estar num voice chat, cabrão" : "You need to be in a voice chat, fuckwit");
+        if (!vc) return message.reply(lang === "pt" ? "Tens de estar num voice chat" : "You need to be in a voice chat");
         if (message.guild.me.voice.channel) {
-            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+            if (vc !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         }
         await guild.setConnection(message, vc)
 
         if (message.mentions.members.first()) {
-            message.channel.send(`${lang === "pt" ? "Parabéns caralho!!" : "Happy birthday asshole!"} <@!${message.mentions.members.first().id}>`)
+            message.channel.send(`${lang === "pt" ? "Todos a desejar parabéns ao" : "Everyone wishing happy birthday to"} <@!${message.mentions.members.first().id}>`)
         } else {
-            message.reply(lang === "pt" ? "Quem é que faz anos caralho? Espero que haja bolo" : "Whose birthday is it? I hope there's cake")
+            message.reply(lang === "pt" ? "Quem é que faz anos? Espero que haja bolo" : "Whose birthday is it? I hope there's cake")
         }
 
 

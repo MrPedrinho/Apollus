@@ -5,7 +5,7 @@ module.exports = {
     en: {
         cmd: "shuffle",
         help: "Shuffles the queue",
-        usage: "mofo shuffle"
+        usage: "fdp shuffle"
     },
     pt: {
         cmd: "shuffle",
@@ -17,7 +17,7 @@ module.exports = {
         const date = new Date()
         const guild = getGuild(message.guild.id)
         const lang = guild.language
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat, cabrão" : "You need to be in the same voice chat, fuckwit")
+        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         const {language, queue} = guild
         if (queue.length <= 2) {
             const embed = new MessageEmbed({
@@ -45,7 +45,7 @@ module.exports = {
             "title": "Shuffle",
             "color": 15158332,
             "timestamp": date,
-            "description": language === "pt" ? "Sucesso, usa `fdp playlist` para ver o resultado" : "Success, use `mofo queue` to see the result",
+            "description": language === "pt" ? "Sucesso, usa `fdp playlist` para ver o resultado" : "Success, use `fdp queue` to see the result",
             "footer": {
                 "icon_url": message.author.displayAvatarURL(),
                 "text": `${message.author.username}#${message.author.discriminator}`

@@ -5,7 +5,7 @@ const {MessageEmbed} = require("discord.js")
 async function searchAndAdd(props, message, lang) {
     let video = await search(props.join(" "), {limit: 1})
     video = video[0]
-    if (!video) return message.reply(lang === "pt" ? "Parabéns, conseguiste partir o bot. Impressionante, fds" : "Congrats, you managed to break the bot. Fucking impressive");
+    if (!video) return message.reply(lang === "pt" ? "Oops, aconteceu alguma coisa" : "Oops, something wrong happened");
     return {
         title: video.title,
         url: video.url,

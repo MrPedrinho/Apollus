@@ -32,7 +32,7 @@ client.on("messageCreate", async (message) => {
 
     const guild = getGuild(message.guild.id)
 
-    if (message.content.toLowerCase().trim() === "mofo help") {
+    if (message.content.toLowerCase().trim() === "fdp help") {
         try {
             const cmd = require("./commands/ajuda")
             await cmd.execute(message, [], "en")
@@ -50,11 +50,11 @@ client.on("messageCreate", async (message) => {
         return
     }
 
-    if (message.content === "fdp português" || message.content === "fdp portugues" || message.content === "mofo english" && !guild) {
+    if (message.content === "fdp português" || message.content === "fdp portugues" || message.content === "fdp english" && !guild) {
         if (!message.member.permissions.has("ADMINISTRATOR")) return;
         let language
         switch(message.content.toLowerCase().trim()) {
-            case "mofo english": {
+            case "fdp english": {
                 language = "en"
                 break
             }
@@ -71,14 +71,14 @@ client.on("messageCreate", async (message) => {
             }
         }
 
-        const newMsg = message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await message.reply(language === "pt" ? "Aguarda..." : "Please wait...")
+        const newMsg = message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await message.reply(language === "pt" ? "Espera..." : "Wait...")
 
         await Server
             .create({guild_id: message.guild.id, language})
 
         createGuild(message.guild.id, language)
 
-        message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Sucesso, o Apollus está pronto para utilizar" : "Success, Apollus is now ready to use!")
+        message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Pronto, já está feito" : "There, it's done")
         return
     }
 
@@ -89,18 +89,12 @@ client.on("messageCreate", async (message) => {
         } catch (err) {
             console.log(err)
         }
-    } else if (trimmed === "mofo") {
-        try {
-            await message.reply("The one motherfucker here is you")
-        } catch (err) {
-            console.log(err)
-        }
     }
 
 
     const [prefix, cmd, ...props] = message.content.split(" ")
 
-    if (prefix !== "fdp" && prefix !== "mofo") return
+    if (prefix !== "fdp") return
 
     if (!cmd) return;
 
@@ -112,8 +106,7 @@ client.on("messageCreate", async (message) => {
 
     const lang = guild.language
 
-    if (lang === "pt" && prefix !== "fdp") return
-    if (lang === "en" && prefix !== "mofo") return
+    if (prefix !== "fdp") return
 
     const indexedCmd = cmdIdx[lang][cmd.toLowerCase()]
 
@@ -121,8 +114,8 @@ client.on("messageCreate", async (message) => {
 
     try {
         if (!indexedCmd) {
-            if (lang === "en") return await message.reply("Are you that dumb? That's not a command, dip shit")
-            return await message.reply("És estúpido ou fazes-te? Isso não é um comando, porra")
+            if (lang === "en") return await message.reply("Yeah... that's not a command")
+            return await message.reply("Pois... isso nâo é um comando")
         }
     } catch (e) {
         console.log(e)
@@ -134,7 +127,7 @@ client.on("messageCreate", async (message) => {
     } catch (err){
         try {
             console.log(err)
-            await message.reply(lang === "pt" ? "Conseguiste partir o bot, parabéns" : "You managed to break the bot, congratulations")
+            await message.reply(lang === "pt" ? "Partiste o bot, bacano" : "You broke the bot, cool")
         } catch (e) {
             console.log(e)
         }
@@ -142,7 +135,13 @@ client.on("messageCreate", async (message) => {
 
 })
 
-client.on("guildCreate", async (guild) => await selectLanguage(guild))
+client.on("guildCreate", async (guild) => {
+    const server = await Server.findOne({guild_id: guild.id})
+    if (server) {
+        createGuild(guild.id, server.language)
+    }
+    await selectLanguage(guild)
+})
 
 client.on("guildDelete", async (guild) => {
     deleteGuild(guild.id)
@@ -166,7 +165,7 @@ client.on("ready", async () => {
 
 client.login(process.env.TOKEN).then(async _r => {
     let servers = client.guilds.cache
-    let options = [{name: "music to " + servers.size + " servers", type: "PLAYING"}, {name: "you enjoy music", type: "WATCHING"}, {name: "to be the best music bot", type: "COMPETING"}]
+    let options = [{name: "music to " + servers.size + " servers", type: "PLAYING"}, {name: "you enjoy music", type: "WATCHING"}, {name: "the music bot race", type: "COMPETING"}]
     let current = 0
 
     setInterval(() => {

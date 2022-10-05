@@ -7,7 +7,7 @@ module.exports = {
     en: {
         cmd: "ping",
         help: "I dare you to do it",
-        usage: "mofo ping"
+        usage: "fdp ping"
     },
     pt: {
         cmd: "ping",
@@ -19,7 +19,7 @@ module.exports = {
         const lang = getGuild(message.guild.id).language
 
         try {
-            await message.reply(lang === "pt" ? "Ping o quê ò filho da puta" : "Ping what? Fucking asshole")
+            await message.reply(lang === "pt" ? "nem te atrevas" : "...no")
         } catch (err) {
             console.log(err)
         }

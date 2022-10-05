@@ -6,7 +6,7 @@ module.exports = {
     en: {
         cmd: "info",
         help: "Information about the bot",
-        usage: "mofo info"
+        usage: "fdp info"
     },
     pt: {
         cmd: "info",
