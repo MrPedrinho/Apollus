@@ -156,8 +156,9 @@ client.on("ready", async () => {
 
 client.login(process.env.TOKEN).then(async _r => {
     let servers = client.guilds.cache
-    client.user.setActivity("musica para " + servers.size + " servidores", {type: "PLAYING"})
-
+    
+    setInterval(() => client.user.setActivity("musica para " + servers.size + " servidores", {type: "PLAYING"}), 15000)
+    
     let guildsInfo = await Server.find({}).exec()
     for (const guildInfo of guildsInfo) {
         const guild = client.guilds.cache.get(guildInfo.guild_id)
