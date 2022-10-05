@@ -139,8 +139,9 @@ client.on("guildCreate", async (guild) => {
     const server = await Server.findOne({guild_id: guild.id})
     if (server) {
         createGuild(guild.id, server.language)
+    } else {
+        await selectLanguage(guild)
     }
-    await selectLanguage(guild)
 })
 
 client.on("guildDelete", async (guild) => {
