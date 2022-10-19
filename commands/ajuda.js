@@ -5,12 +5,12 @@ const {getGuild} = require("../assets");
 const ajudaCmds = {
     en: {
         cmd: "help",
-        help: "Information about each command, as if you're stupid",
+        help: "Information about each command",
         usage: "fdp ajuda",
     },
     pt: {
         cmd: "ajuda",
-        help: "Ajuda-te a perceber os comandos, como se fosses estúpido",
+        help: "Ajuda-te a perceber os comandos",
         usage: "fdp ajuda"
     }
 }
