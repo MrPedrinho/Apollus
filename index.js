@@ -28,7 +28,7 @@ commandFiles.forEach(file => {
 client.on("messageCreate", async (message) => {
     if (message.author.bot) return;
 
-    if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES")) return;
+    if (!message.guild.me.permissionsIn(message.channel)?.has("SEND_MESSAGES")) return;
 
     const guild = getGuild(message.guild.id)
 
