@@ -4,6 +4,9 @@ const {createGuild, getGuild, deleteGuild, selectLanguage, connectMongo, Server}
 require("dotenv").config()
 const play = require("play-dl")
 
+var os = require("os");
+var hostname = os.hostname();
+
 //https://discord.com/oauth2/authorize?client_id=894845421380337684&scope=bot&permissions=36809984
 
 const client = new Client({intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES"]})
