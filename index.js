@@ -15,8 +15,8 @@ connectMongo().catch(err => console.log(err))
 var http = require('http');
 //create a server object:
 http.createServer(function (req, res) {
-    res.statusCode = 200
-    res.end(); //end the response
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
 }).listen(3000, function(){
  console.log("server start at port 3000"); //the server object listens on port 3000
 });
