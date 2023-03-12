@@ -1,25 +1,16 @@
-const { Client } = require("discord.js")
+const { Client, GatewayIntentBits, PermissionsBitField } = require("discord.js")
 const fs = require("fs")
 const {createGuild, getGuild, deleteGuild, selectLanguage, connectMongo, Server} = require("./assets");
-require("dotenv").config()
+require("dotenv").config({path: './.env.local'})
 const play = require("play-dl")
 
 //https://discord.com/oauth2/authorize?client_id=894845421380337684&scope=bot&permissions=36809984
 
-const client = new Client({intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES"]})
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.MessageContent]})
 module.exports = client
 // Mongoose
 
 connectMongo().catch(err => console.log(err))
-
-var http = require('http');
-//create a server object:
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('OK');
-}).listen(3000, function(){
- console.log("server start at port 3000"); //the server object listens on port 3000
-});
 
 // Discord.js
 
@@ -37,10 +28,9 @@ commandFiles.forEach(file => {
 client.on("messageCreate", async (message) => {
     if (message.author.bot) return;
 
-    if (!message.guild.me.permissionsIn(message.channel)?.has("SEND_MESSAGES")) return;
+    if (!message.guild.members.me.permissionsIn(message.channel)?.has(PermissionsBitField.Flags.SendMessages)) return;
 
     const guild = getGuild(message.guild.id)
-
     if (message.content.toLowerCase().trim() === "fdp help") {
         try {
             const cmd = require("./commands/ajuda")
@@ -80,14 +70,14 @@ client.on("messageCreate", async (message) => {
             }
         }
 
-        const newMsg = message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await message.reply(language === "pt" ? "Espera..." : "Wait...")
+        const newMsg = message.guild.members.me.permissions.has("READ_MESSAGE_HISTORY") && await message.reply(language === "pt" ? "Espera..." : "Wait...")
 
         await Server
             .create({guild_id: message.guild.id, language})
 
         createGuild(message.guild.id, language)
 
-        message.guild.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Pronto, já está feito" : "There, it's done")
+        message.guild.members.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Pronto, já está feito" : "There, it's done")
         return
     }
 
