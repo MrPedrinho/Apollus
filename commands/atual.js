@@ -1,6 +1,6 @@
 const {getGuild} = require("../assets");
 const {video_info} = require("play-dl");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 
 module.exports = {
     pt: {
@@ -28,7 +28,7 @@ module.exports = {
         song = song.video_details
         const date = new Date()
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Música Atual" : "Current Song",
             "description": `[${song.title}](${song.url})`,
             "color": 15158332,

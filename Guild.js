@@ -1,4 +1,4 @@
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const youtube = require("play-dl");
 const {entersState, VoiceConnectionStatus, createAudioResource,
     createAudioPlayer,
@@ -52,7 +52,7 @@ class Guild {
         const date = new Date()
         const lang = this.language
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Prepara-te para dançar 💃🕺, está agora a tocar" : "Get your moves ready 💃🕺, the next song is coming right up!",
             "color": 15158332,
             "timestamp": date,
@@ -170,7 +170,7 @@ class Guild {
         const date = new Date()
         const lang = this.language
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Playlist adicionada" : "Playlist added",
             "color": 15158332,
             "timestamp": date,
@@ -219,7 +219,7 @@ class Guild {
         const date = new Date()
         const lang = this.language
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Podes descançar que jã vai mudar" : "You can chill 'cause I'm skipping it",
             "color": 15158332,
             "timestamp": date,

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const {getGuild} = require("../assets");
 
 const ajudaCmds = {
@@ -51,7 +51,7 @@ module.exports = {
 
                 if (!helps[lang][props[0].toLowerCase()]) return message.reply(lang === "pt" ? "Não te posso ajudar com um comando que não existe" : "No can do, that command does not exist")
 
-                const embed = new MessageEmbed({
+                const embed = new EmbedBuilder({
                     "title": lang === "pt" ? "Está aqui a ajuda que pediste" : "Here's the help you asked for",
                     "color": 15158332,
                     "timestamp": date,
@@ -70,7 +70,7 @@ module.exports = {
             }
         }
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Aqui está, agradece-me depois" : "Here, thank me later",
             "color": 15158332,
             "timestamp": date,

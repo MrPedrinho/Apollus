@@ -1,5 +1,5 @@
 const {getGuild} = require("../assets");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 
 module.exports = {
     en: {
@@ -20,7 +20,7 @@ module.exports = {
         if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         const {language, queue} = guild
         if (queue.length <= 2) {
-            const embed = new MessageEmbed({
+            const embed = new EmbedBuilder({
                 "title": "Shuffle",
                 "color": 15158332,
                 "timestamp": date,
@@ -41,7 +41,7 @@ module.exports = {
         shuffledQueue.unshift(current)
         guild.setQueue(shuffledQueue)
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": "Shuffle",
             "color": 15158332,
             "timestamp": date,

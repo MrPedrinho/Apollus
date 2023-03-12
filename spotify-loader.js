@@ -1,7 +1,7 @@
 const play = require("play-dl")
 const {sp_validate, spotify} = require("play-dl")
 const {getGuild} = require("./assets")
-const {MessageEmbed} = require("discord.js")
+const {EmbedBuilder} = require("discord.js")
 
 async function getSong(title, message) {
     let searched = await play.search(title, { limit : 1 })
@@ -35,7 +35,7 @@ async function execute (message, props) {
 
         const song = await getSong(`${track.name} ${track.artists.map(artist => artist.name + " ")}`, message)
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Nova música adicionada" : "New song added",
             "color": 15158332,
             "timestamp": date,
@@ -82,7 +82,7 @@ async function execute (message, props) {
             guild.shuffleArray(converted)
         }
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Playlist adicionada" : "Playlist added",
             "color": 15158332,
             "timestamp": date,

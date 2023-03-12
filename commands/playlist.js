@@ -1,5 +1,5 @@
 const {getGuild} = require("../assets");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 
 module.exports = {
     en: {
@@ -41,7 +41,7 @@ module.exports = {
 
         const date = new Date()
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": "Playlist",
             "color": 15158332,
             "timestamp": date,

@@ -1,5 +1,5 @@
 const {Guild} = require("./Guild");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const mongoose = require("mongoose");
 
 let guildList = {}
@@ -29,7 +29,7 @@ async function selectLanguage(guild) {
 
     const date = new Date()
 
-    const embed = new MessageEmbed({
+    const embed = new EmbedBuilder({
         "title": `Apollus Setup`,
         "description": "Before you start using Apollus, you need to select a language.\n\nAntes de começares a utilizar o Apollus, tens de escolher um idioma",
         "color": 15158332,

@@ -1,6 +1,6 @@
 const {video_info, yt_validate, search} = require("play-dl")
 const {getGuild} = require("./assets")
-const {MessageEmbed} = require("discord.js")
+const {EmbedBuilder} = require("discord.js")
 
 async function searchAndAdd(props, message, lang) {
     let video = await search(props.join(" "), {limit: 1})
@@ -59,7 +59,7 @@ async function execute (message, props) {
 
     const date = new Date()
 
-    const embed = new MessageEmbed({
+    const embed = new EmbedBuilder({
         "title": lang === "pt" ? "Nova música adicionada" : "New song added",
         "color": 15158332,
         "timestamp": date,

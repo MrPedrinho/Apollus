@@ -1,5 +1,5 @@
 const {getGuild} = require("../assets");
-const {MessageEmbed} = require("discord.js");
+const {EmbedBuilder} = require("discord.js");
 const {guilds} = require("../index");
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
         const ping = Math.round(message.client.ws.ping)
         const date = new Date()
 
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
             "title": lang === "pt" ? "Informações sobre o bot" : "Information about the bot",
             "color": 15158332,
             "timestamp": date,
