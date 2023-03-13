@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, PermissionsBitField } = require("discord.js")
+const { Client, GatewayIntentBits, PermissionsBitField, ActivityType } = require("discord.js")
 const fs = require("fs")
 const {createGuild, getGuild, deleteGuild, selectLanguage, connectMongo, Server} = require("./assets");
 require("dotenv").config({path: './.env.local'})
@@ -156,7 +156,7 @@ client.on("ready", async () => {
 client.login(process.env.TOKEN).then(async _r => {
     let servers = client.guilds.cache
     
-    setInterval(() => client.user.setActivity("musica para " + servers.size + " servidores", {type: "PLAYING"}), 15000)
+    setInterval(() => client.user.setActivity("musica para " + servers.size + " servidores", {type: ActivityType.Playing}), 120000)
     
     let guildsInfo = await Server.find({}).exec()
     for (const guildInfo of guildsInfo) {
