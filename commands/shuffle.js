@@ -17,7 +17,7 @@ module.exports = {
         const date = new Date()
         const guild = getGuild(message.guild.id)
         const lang = guild.language
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
+        if (message.member.voice.channel !== message.guild.members.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         const {language, queue} = guild
         if (queue.length <= 2) {
             const embed = new EmbedBuilder({

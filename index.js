@@ -50,7 +50,7 @@ client.on("messageCreate", async (message) => {
     }
 
     if (message.content === "fdp português" || message.content === "fdp portugues" || message.content === "fdp english" && !guild) {
-        if (!message.member.permissions.has("ADMINISTRATOR")) return;
+        if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) return;
         let language
         switch(message.content.toLowerCase().trim()) {
             case "fdp english": {
@@ -70,14 +70,14 @@ client.on("messageCreate", async (message) => {
             }
         }
 
-        const newMsg = message.guild.members.me.permissions.has("READ_MESSAGE_HISTORY") && await message.reply(language === "pt" ? "Espera..." : "Wait...")
+        const newMsg = message.guild.members.me.permissions.has(PermissionsBitField.Flags.ReadMessageHistory) && await message.reply(language === "pt" ? "Espera..." : "Wait...")
 
         await Server
             .create({guild_id: message.guild.id, language})
 
         createGuild(message.guild.id, language)
 
-        message.guild.members.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Pronto, já está feito" : "There, it's done")
+        message.guild.members.me.permissions.has(PermissionsBitField.Flags.ReadMessageHistory) && await newMsg.edit(language === "pt" ? "Pronto, já está feito" : "There, it's done")
         return
     }
 
@@ -88,7 +88,7 @@ client.on("messageCreate", async (message) => {
     if (!cmd) return;
 
     if (!guild) {
-        if (!message.member.permissions.has("ADMINISTRATOR")) return;
+        if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) return;
         await selectLanguage(message.guild)
         return
     }

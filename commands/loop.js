@@ -17,7 +17,7 @@ module.exports = {
         const lang = guild.language
 
         const answer = guild.setLooping(props[0])
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
+        if (message.member.voice.channel !== message.guild.members.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         if (answer.notFound) {
             message.reply(lang === "pt" ? "Não conheço esse valor, para saberes os valores que podes utilizar `fdp ajuda loop`" : "Don't know that value. Use `fdp help loop` to know which values you can use")
         } else {

@@ -1,5 +1,5 @@
 const {Guild} = require("./Guild");
-const {EmbedBuilder} = require("discord.js");
+const {EmbedBuilder, PermissionsBitField, ChannelType } = require("discord.js");
 const mongoose = require("mongoose");
 
 let guildList = {}
@@ -20,8 +20,8 @@ function deleteGuild(id) {
 async function selectLanguage(guild) {
     let defaultChannel = "";
     guild.channels.cache.forEach((channel) => {
-        if(channel.type === "GUILD_TEXT" && defaultChannel === "") {
-            if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
+        if(channel.type === ChannelType.GuildText && defaultChannel === "") {
+            if(channel.permissionsFor(guild.members.me).has(PermissionsBitField.Flags.SendMessages)) {
                 defaultChannel = channel;
             }
         }
@@ -55,16 +55,17 @@ async function selectLanguage(guild) {
                 const content = collected.map(d => d.content)[0]
                 const language = content === "fdp english" ? "en" : "pt"
 
-                const newMsg = guild.me.permissions.has("READ_MESSAGE_HISTORY") && await defaultChannel.send(language === "pt" ? "Aguarda..." : "Please wait...")
+                const newMsg = guild.members.me.permissions.has(PermissionsBitField.Flags.ReadMessageHistory) && await defaultChannel.send(language === "pt" ? "Aguarda..." : "Please wait...")
 
 
                 await Server
                     .create({guild_id: guild.id, language})
 
-                guild.me.permissions.has("READ_MESSAGE_HISTORY") && await newMsg.edit(language === "pt" ? "Sucesso, o Apollus está pronto para utilizar" : "Success, Apollus is now ready to use!")
-
-                guild.me.permissions.has("READ_MESSAGE_HISTORY") && sentMsg.delete()
-                guild.me.permissions.has("READ_MESSAGE_HISTORY") && reminderMessage.delete()
+                if (guild.members.me.permissions.has(PermissionsBitField.Flags.ReadMessageHistory)) {
+                    await newMsg.edit(language === "pt" ? "Sucesso, o Apollus está pronto para utilizar" : "Success, Apollus is now ready to use!")
+                    await sentMsg.delete()
+                    await reminderMessage.delete()
+                }
             })
             .catch(err => console.log(err))
 

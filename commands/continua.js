@@ -16,7 +16,7 @@ module.exports = {
 
         const guild = getGuild(message.guild.id)
         const lang = guild.language
-        if (message.member.voice.channel !== message.guild.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
+        if (message.member.voice.channel !== message.guild.members.me.voice.channel) return message.reply(lang === "pt" ? "Tens de estar no mesmo voice chat" : "You need to be in the same voice chat")
         message.reply(guild.language === "pt" ? "Ah afinal sempre querem música" : "Ah, so you do want music after all")
         guild.getPlayer().unpause()
     }
